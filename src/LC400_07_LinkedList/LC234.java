@@ -6,22 +6,12 @@ package LC400_07_LinkedList;
 public class LC234 {
     public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) return true;
-        ListNode slow = head, fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        ListNode last = slow.next, pre = head;
-        while (last.next != null) {
-            ListNode temp = last.next;
-            last.next = temp.next;
-            temp.next = slow.next;
-            slow.next = temp;
-        }
-        while (slow.next != null) {
-            slow = slow.next;
-            if (pre.val != slow.val) return false;
-            pre = pre.next;
+        ListNode middle = LinkedListUtils.findMiddle(head);
+        middle.next = LinkedListUtils.reverse(middle.next);
+        while (middle.next != null) {
+            middle = middle.next;
+            if (head.val != middle.val) return false;
+            head = head.next;
         }
         return true;
     }
