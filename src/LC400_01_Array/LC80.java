@@ -5,7 +5,7 @@ package LC400_01_Array;
  */
 public class LC80 {
     public int removeDuplicates(int[] nums) {
-        if (nums.length < 3)    return nums.length;
+        if (nums.length < 3) return nums.length;
         // 与上题相似，也用双指针，多一个判断即可
         int left = 1, right = 2;
         while (right < nums.length) {
@@ -19,5 +19,15 @@ public class LC80 {
             }
         }
         return left + 1;
+    }
+
+    public int removeDuplicates2(int[] nums) {
+        int i = 0;
+        for (int n : nums) {
+            if (i < 2 || n > nums[i - 2]) {
+                nums[i++] = n;
+            }
+        }
+        return i;
     }
 }
