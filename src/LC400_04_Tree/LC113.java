@@ -35,7 +35,7 @@ public class LC113 {
     }
 
     // 迭代
-    public List<List<Integer>> pathSumIterator(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -51,16 +51,17 @@ public class LC113 {
                 currentSum += currentNode.val;
                 currentNode = currentNode.left;
             }
+
             currentNode = stack.peek();
             if (currentNode.right != null && currentNode.right != pre) {
                 currentNode = currentNode.right;
                 continue;
             }
-            if (currentNode.left == null && currentNode.right == null && currentSum == sum)
+            if (currentNode.left == null && currentNode.right == null && currentSum == sum) {
                 res.add(new ArrayList<>(path));
+            }
 
-            pre = currentNode;
-            stack.pop();
+            pre = stack.pop();
             path.remove(path.size() - 1);
             currentSum -= currentNode.val;
             currentNode = null;
