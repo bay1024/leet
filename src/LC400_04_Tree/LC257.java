@@ -43,7 +43,10 @@ public class LC257 {
             TreeNode curNode = sNode.pop();
             String curStr = sStr.pop();
 
-            if (curNode.left == null && curNode.right == null) list.add(curStr + curNode.val);
+            if (curNode.left == null && curNode.right == null) {
+                list.add(curStr + curNode.val);
+                continue;
+            }
             if (curNode.left != null) {
                 sNode.push(curNode.left);
                 sStr.push(curStr + curNode.val + "->");
@@ -69,7 +72,10 @@ public class LC257 {
             TreeNode curNode = qNode.remove();
             String curStr = qStr.remove();
 
-            if (curNode.left == null && curNode.right == null) list.add(curStr + curNode.val);
+            if (curNode.left == null && curNode.right == null) {
+                list.add(curStr + curNode.val);
+                continue;
+            }
             if (curNode.left != null) {
                 qNode.add(curNode.left);
                 qStr.add(curStr + curNode.val + "->");
